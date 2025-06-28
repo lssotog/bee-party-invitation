@@ -1,138 +1,479 @@
+@import "tailwindcss";
+
+@theme {
+    --font-inkFree: "InkFree", system-ui;
+    --font-chewy: "Chewy", system-ui;
+    --font-mynerve: "Mynerve", cursiva;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --card-size-inline: 500px;
+    --card-aspect-ratio: 1291/2161;
+    --card-font-family-chewy: "Chewy", system-ui;
+    --card-font-family-mynerve: "Mynerve", cursiva;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+    color: #535bf2;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
 }
 
 #app {
-  width: fit-content;
-  margin: 0 auto;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .card {
-  aspect-ratio: 1291/2161;
-  width: 500px;
-  background-size: contain;
-  background-image: linear-gradient(to bottom, rgb(255, 250, 236) 0%, rgb(253, 253, 253) 100%);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
+    aspect-ratio: var(--card-aspect-ratio);
+    width: var(--card-size-inline);
     background-size: contain;
-    position: absolute;
-    inset: 0;
-    content: '';
-    background-blend-mode: multiply;
-    z-index: 1;
-  }
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(
+        to bottom,
+        rgb(255, 250, 236) 0%,
+        rgb(253, 253, 253) 100%
+    );
 }
 
+[data-scene="one"],
+[data-scene="background"] {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+}
+
+[data-scene],
 .trees,
 .bee[data-bee],
 .almita,
 .flowers {
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
-  background-size: contain;
-  position: relative;
-  z-index: 10;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    background-size: contain;
+    position: relative;
+    z-index: 10;
+    max-width: var(--card-size-inline);
 }
 
 .trees {
-  aspect-ratio: 4089 / 1753;
-  width: 500px;
-  background-image: url(trees@3x.png);
-  background-position: center;
-  /* margin-inline: auto; */
-  background-size: cover;
-  inset-inline: 0;
+    aspect-ratio: 4089 / 1753;
+    width: 500px;
+    background-image: url(trees@3x.png);
+    background-position: center;
+    background-size: cover;
+    inset-inline: 0;
 }
-.bee[data-bee=one] {
-  aspect-ratio: 368/481;
-  width: 30px;
-  background-image: url(bee-blue.png);
-  background-position: center;
-  /* margin: auto; */
-  background-size: 100% 100%;
-  /* inset-inline: -5px; */
-  animation: hoverLittleBees 1s ease-in-out infinite;
+
+.bee[data-bee="one"] {
+    aspect-ratio: 368/481;
+    width: 30px;
+    display: flex;
+
+    &[data-replicate="one"] {
+        animation-delay: 0.2s;
+        animation:
+            xAxis 8s infinite ease-in-out,
+            beeOneTop 10s infinite ease-in-out;
+
+        i {
+            animation: beePulse 1s ease-in-out infinite;
+
+            &:before {
+                animation-delay: 2.2s;
+                animation-direction: alternate-reverse;
+                animation: yAxis 2.5s infinite
+                    cubic-bezier(0.3, 0.27, 0.07, 1.64);
+            }
+        }
+    }
+
+    i {
+        width: inherit;
+        aspect-ratio: inherit;
+        display: inherit;
+        will-change: transform;
+
+        &:before {
+            content: "";
+            width: inherit;
+            aspect-ratio: inherit;
+            display: inherit;
+            background-image: url(bee-blue.png);
+            background-position: center;
+            background-size: 100% 100%;
+            will-change: transform;
+        }
+    }
 }
-.bee[data-bee] {}
+.bee[data-bee="two"] {
+    aspect-ratio: 1/1;
+    width: 40px;
+    display: flex;
+
+    &[data-replicate="one"] {
+        animation-delay: 0.2s;
+        animation:
+            beeXAxis 8s infinite ease-in-out,
+            beeOneTop 10s infinite ease-in-out;
+
+        i {
+            animation: beePulse 1s ease-in-out infinite;
+
+            &:before {
+                animation-delay: 2.2s;
+                animation-direction: alternate-reverse;
+                animation: beeYAxis 2.5s infinite
+                    cubic-bezier(0.3, 0.27, 0.07, 1.64);
+            }
+        }
+    }
+    &[data-replicate="two"] {
+        animation-delay: 4.2s;
+        animation:
+            xAxis 7s infinite ease-in-out,
+            beeOneTop 10s infinite ease-in-out;
+
+        i {
+            animation-delay: 1.2s;
+            animation: beePulse 1s ease-in-out infinite;
+
+            &:before {
+                animation: yAxis 2.5s infinite
+                    cubic-bezier(0.3, 0.27, 0.07, 1.64);
+            }
+        }
+    }
+    &[data-replicate="three"] {
+        animation-direction: alternate-reverse;
+        animation:
+            xAxis 8s infinite ease-in-out 8s,
+            beeOneTop 10s infinite ease-in-out;
+
+        i {
+            animation: beePulse 1s ease-in-out infinite 3s;
+
+            &:before {
+                animation-direction: alternate-reverse;
+                animation: yAxis 4.5s infinite
+                    cubic-bezier(0.3, 0.27, 0.07, 1.64) 3s;
+            }
+        }
+    }
+
+    i {
+        width: inherit;
+        aspect-ratio: inherit;
+        display: inherit;
+        will-change: transform;
+
+        &:before {
+            content: "";
+            width: inherit;
+            aspect-ratio: inherit;
+            display: inherit;
+            background-image: url(bee-weird.png);
+            background-position: center;
+            background-size: 100% 100%;
+            will-change: transform;
+        }
+    }
+}
+
+.bee[data-bee="three"] {
+    aspect-ratio: 368/481;
+    width: 30px;
+    display: flex;
+    position: absolute;
+    inset: 0;
+
+    &[data-replicate="one"] {
+        animation-delay: 0.2s;
+        /* animation: xAxis 8s infinite ease-in-out; */
+
+        i {
+            animation: beePulse 1s ease-in-out infinite;
+
+            &:before {
+                animation-delay: 2.2s;
+                animation-direction: alternate-reverse;
+            }
+        }
+    }
+
+    i {
+        width: inherit;
+        aspect-ratio: inherit;
+        display: inherit;
+        will-change: transform;
+
+        &:before {
+            content: "";
+            width: inherit;
+            aspect-ratio: inherit;
+            display: inherit;
+            background-image: url(bee-blue.png);
+            background-position: center;
+            background-size: 100% 100%;
+            will-change: transform;
+        }
+    }
+}
 
 .almita {
-  aspect-ratio: 2124/2435;
-  width: 310px;
-  background-image: url(bee@3x.png);
-  background-position: center;
-  margin: auto;
-  background-size: 100% 100%;
-  inset-inline: -5px;
-  animation: hover 2s ease-in-out infinite;
+    aspect-ratio: 2124/2435;
+    width: 310px;
+    background-image: url(bee@3x.png);
+    background-position: center;
+    margin: auto;
+    background-size: 100% 100%;
+    inset-inline: -5px;
+    animation:
+        hover 2s ease-in-out infinite,
+        almitaAppears 5s ease-in-out forwards;
+    will-change: margin transform;
 }
 
 .flowers {
-  aspect-ratio: 31 / 20;
-  width: 530px;
-  background-image: url(flowers@3x.png);
-  background-position: center;
-  margin-inline: auto;
-  background-size: 100% 100%;
-  inset-inline: -15px;
-  inset-block-end: -100px;
-  margin-block-start: auto;
+    aspect-ratio: 31 / 20;
+    width: 530px;
+    background-image: url(flowers@3x.png);
+    background-position: center;
+    background-size: 100% 100%;
+    inset-inline: -15px;
+    inset-block-end: -100px;
+    margin-block-start: auto;
+}
+
+[data-scene="one"] {
+    .almita-dialog {
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out forwards 5s;
+    }
+
+    [data-message] {
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    [data-message="1"] {
+        animation-delay: 5200ms;
+    }
+
+    [data-message="2"] {
+        animation-delay: 5400ms;
+    }
+
+    [data-message="3"] {
+        animation-delay: 6400ms;
+    }
+
+    [data-message="4"] {
+        animation-delay: 6800ms;
+    }
+
+    [data-message="5"] {
+        animation-delay: 7200ms;
+    }
+
+    [data-message="6"] {
+        animation-delay: 7600ms;
+    }
+
+    [data-message="7"] {
+        animation-delay: 8000ms;
+    }
+}
+
+[data-scene="notification"] {
+    width: var(--card-size-inline);
+    aspect-ratio: var(--card-aspect-ratio);
+
+    [data-scene="welcome"] {
+        width: inherit;
+        aspect-ratio: inherit;
+        background-color: rgba(255, 255, 255, 0.07);
+        backdrop-filter: blur(3px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            position: relative;
+            width: calc(var(--card-size-inline) / 1.6);
+            min-height: 6ch;
+            display: inline-flex;
+            flex-direction: column;
+            padding-inline: 3ch;
+            padding-block: 1ch;
+
+            span {
+                font-family: var(--card-font-family-chewy);
+            }
+
+            &:after,
+            &:before {
+                content: "";
+                width: inherit;
+                display: flex;
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                width: calc(var(--card-size-inline) / 1.7);
+                left: 50%;
+                translate: -50% 0;
+            }
+
+            &:before {
+                background-image: url(ramas-1@3x.png);
+                background-position: bottom center;
+                height: 75px;
+                bottom: 98%;
+            }
+
+            &:after {
+                background-image: url(ramas-2@3x.png);
+                background-position: top center;
+                top: 100%;
+                height: 55px;
+            }
+        }
+    }
+}
+
+@keyframes almitaAppears {
+    0% {
+        margin-inline-start: 80%;
+        scale: 0.1;
+    }
+    20% {
+        scale: 0.4;
+    }
+    80% {
+        margin-inline-start: calc(var(--card-size-inline) / 3);
+    }
+
+    100% {
+        margin-inline-start: calc(var(--card-size-inline) / 2.4);
+        scale: 0.9;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes hover {
-	0% {
-		transform: translateY(0px);
-	}
-	50% {
-		transform: translateY(-15px);
-	}
-	100% {
-		transform: translateY(0px);
-	}
+    0% {
+        translate: 0 0px;
+    }
+    50% {
+        translate: 0 -15px;
+    }
+    100% {
+        translate: 0 0px;
+    }
 }
 
-@keyframes hoverLittleBees {
-	0% {
-		transform: translateY(0px);
-	}
-	50% {
-		transform: translateY(-5px);
-	}
-	100% {
-		transform: translateY(0px);
-	}
+@keyframes beeOneTop {
+    0% {
+        top: -20px;
+    }
+    50% {
+        top: 220px;
+    }
+    100% {
+        top: -20px;
+    }
+}
+
+@keyframes beePulse {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes beeXAxis {
+    0% {
+        animation-timing-function: ease-out;
+        transform: translateX(-60px);
+    }
+    50% {
+        animation-timing-function: ease-out;
+        transform: translateX(calc(var(--card-size-inline) / 2));
+    }
+    100% {
+        animation-timing-function: ease-out;
+        transform: translateX(-60px);
+    }
+}
+
+@keyframes beeYAxis {
+    50% {
+        animation-timing-function: ease-out;
+        transform: translateY(70px);
+    }
+}
+
+@keyframes xAxis {
+    0% {
+        animation-timing-function: ease-out;
+        transform: translateX(-40px);
+    }
+    50% {
+        animation-timing-function: ease-out;
+        transform: translateX(calc(var(--card-size-inline) + 40px));
+    }
+    100% {
+        animation-timing-function: ease-out;
+        transform: translateX(-40px);
+    }
+}
+
+@keyframes yAxis {
+    50% {
+        animation-timing-function: ease-out;
+        transform: translateY(30px);
+    }
 }
 
 
