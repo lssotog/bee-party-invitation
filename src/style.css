@@ -11,15 +11,16 @@
     line-height: 1.5;
     font-weight: 400;
 
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
+    --theme-gradient: linear-gradient(
+        to bottom,
+        rgb(255 245 214) 0%,
+        rgb(255 254 253) 100%
+    );
     --card-size-inline: 500px;
     --card-aspect-ratio: 1291/2161;
     --card-font-family-chewy: "Chewy", system-ui;
@@ -28,11 +29,8 @@
 
 a {
     font-weight: 500;
-    color: #646cff;
     text-decoration: inherit;
-}
-a:hover {
-    color: #535bf2;
+    cursor: pointer;
 }
 
 body {
@@ -41,6 +39,7 @@ body {
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
+    background-image: var(--theme-gradient);
 }
 
 #app {
@@ -57,11 +56,7 @@ body {
     grid-template-rows: 1fr;
     position: relative;
     overflow: hidden;
-    background-image: linear-gradient(
-        to bottom,
-        rgb(255, 250, 236) 0%,
-        rgb(253, 253, 253) 100%
-    );
+    background-image: var(--theme-gradient);
 }
 
 [data-scene="one"],
@@ -87,7 +82,7 @@ body {
 .trees {
     aspect-ratio: 4089 / 1753;
     width: 500px;
-    background-image: url(trees@3x.png);
+    background-image: url(/assets/trees@3x.png);
     background-position: center;
     background-size: cover;
     inset-inline: 0;
@@ -127,13 +122,14 @@ body {
             width: inherit;
             aspect-ratio: inherit;
             display: inherit;
-            background-image: url(bee-blue.png);
+            background-image: url(/assets/bee-blue.png);
             background-position: center;
             background-size: 100% 100%;
             will-change: transform;
         }
     }
 }
+
 .bee[data-bee="two"] {
     aspect-ratio: 1/1;
     width: 40px;
@@ -200,7 +196,7 @@ body {
             width: inherit;
             aspect-ratio: inherit;
             display: inherit;
-            background-image: url(bee-weird.png);
+            background-image: url(/assets/bee-weird.png);
             background-position: center;
             background-size: 100% 100%;
             will-change: transform;
@@ -240,7 +236,7 @@ body {
             width: inherit;
             aspect-ratio: inherit;
             display: inherit;
-            background-image: url(bee-blue.png);
+            background-image: url(/assets/bee-blue.png);
             background-position: center;
             background-size: 100% 100%;
             will-change: transform;
@@ -251,30 +247,62 @@ body {
 .almita {
     aspect-ratio: 2124/2435;
     width: 310px;
-    background-image: url(bee@3x.png);
+    background-image: url(/assets/bee@3x.png);
     background-position: center;
-    margin: auto;
-    background-size: 100% 100%;
-    inset-inline: -5px;
+    margin-block-start: auto;
+    background-size: contain;
+    inset-inline: 0;
     animation:
         hover 2s ease-in-out infinite,
         almitaAppears 5s ease-in-out forwards;
-    will-change: margin transform;
+    will-change: margin, transform;
+    grid-area: bee;
 }
 
 .flowers {
     aspect-ratio: 31 / 20;
     width: 530px;
-    background-image: url(flowers@3x.png);
+    background-image: url(/assets/flowers@3x.png);
     background-position: center;
-    background-size: 100% 100%;
-    inset-inline: -15px;
+    background-size: 110% 110%;
+    inset-inline: 0;
     inset-block-end: -100px;
     margin-block-start: auto;
 }
 
 [data-scene="one"] {
+    padding-inline: 1ch;
+    grid-template-columns: 1ch 1fr 210px 1ch;
+    grid-template-rows: 1ch 1fr 0.5fr 1ch;
+    grid-template-areas:
+        ". . . ."
+        ". message bee ."
+        ". details details ."
+        ". bottom bottom .";
+
+    .details {
+        grid-area: details;
+        display: grid;
+        grid-template-columns: repeat(19, 1fr);
+        gap: 0.5ch;
+    }
+
+    .location {
+        grid-column: 5 / span 6;
+        margin-top: 4ch;
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out forwards 13s;
+    }
+
+    .confirmation {
+        grid-column: 9 / span 7;
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out forwards 15s;
+        margin-top: -7ch;
+    }
+
     .almita-dialog {
+        grid-area: message;
         opacity: 0;
         animation: fadeIn 2s ease-in-out forwards 5s;
     }
@@ -353,14 +381,14 @@ body {
             }
 
             &:before {
-                background-image: url(ramas-1@3x.png);
+                background-image: url(/assets/ramas-1@3x.png);
                 background-position: bottom center;
                 height: 75px;
                 bottom: 98%;
             }
 
             &:after {
-                background-image: url(ramas-2@3x.png);
+                background-image: url(/assets/ramas-2@3x.png);
                 background-position: top center;
                 top: 100%;
                 height: 55px;
@@ -371,19 +399,20 @@ body {
 
 @keyframes almitaAppears {
     0% {
-        margin-inline-start: 80%;
+        margin-inline-start: calc(var(--card-size-inline) * 0.19);
         scale: 0.1;
     }
-    20% {
+    50% {
         scale: 0.4;
     }
     80% {
-        margin-inline-start: calc(var(--card-size-inline) / 3);
+        margin-inline-start: calc(var(--card-size-inline) * -0.05);
+        scale: 0.8;
     }
 
     100% {
-        margin-inline-start: calc(var(--card-size-inline) / 2.4);
-        scale: 0.9;
+        margin-inline-start: calc(var(--card-size-inline) * -0.1);
+        scale: 0.85;
     }
 }
 
@@ -476,16 +505,15 @@ body {
     }
 }
 
-
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+    :root {
+        /* color: #213547; */
+        background-color: #ffffff;
+    }
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
 }
