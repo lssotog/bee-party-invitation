@@ -220,7 +220,6 @@ body {
 
     &[data-replicate="one"] {
         animation-delay: 0.2s;
-        /* animation: xAxis 8s infinite ease-in-out; */
 
         i {
             animation: beePulse 1s ease-in-out infinite;
@@ -275,87 +274,66 @@ body {
 
 [data-scene="two"] {
     padding-inline: 1ch;
-    grid-template-columns: 1ch 1fr 180px 1ch;
-    grid-template-rows: 1ch 1fr 0.8fr 1ch;
-    row-gap: 2ch;
-    grid-template-areas:
-        ". . . ."
-        ". message bee ."
-        ". details details ."
-        ". bottom bottom .";
+    grid-template-columns: 1ch repeat(8, 1fr) 1ch;
+    grid-template-rows: 10ch repeat(11, 5vh) 10ch;
+    row-gap: 1ch;
 
-    .almita {
-        grid-area: bee;
+    [data-two="almita"] {
+        grid-column: 5 / span 6;
+        grid-row: 3 / span 6;
+        animation: hover 2s ease-in-out infinite;
+        margin-inline-start: calc(100% * 0.15);
+        scale: 0.99;
     }
 
     .message {
-        grid-area: message;
-        margin-block-start: auto;
-        margin-block-end: 3ch;
+        grid-column: 2 / span 5;
+        grid-row: 5 / span 3;
+        max-width: 20ch;
     }
 
     .details {
-        grid-area: details;
+        grid-column: 1 / span 9;
+        grid-row: 8 / -1;
         display: grid;
-        grid-template-columns: repeat(19, 1fr);
+        grid-template-columns: repeat(10, 1fr);
         column-gap: 0.5ch;
         row-gap: 2ch;
         height: fit-content;
     }
 
     .location {
-        grid-column: 3 / span 12;
+        grid-column: 2 / span 9;
+        grid-row: 1 / span 1;
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out forwards 3s;
     }
 
     .confirmation {
-        grid-column: 9 / span 7;
+        grid-column: 4 / span 8;
+        grid-row: 2 / span 1;
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out forwards 7s;
+        position: relative;
     }
 }
 
 [data-scene="one"] {
     padding-inline: 1ch;
-    grid-template-columns: 1ch 1fr 210px 1ch;
-    grid-template-rows: 1ch 1fr 0.5fr 1ch;
-    row-gap: 2ch;
-    grid-template-areas:
-        ". . . ."
-        ". message bee ."
-        ". details details ."
-        ". bottom bottom .";
+    grid-template-columns: 1ch repeat(8, 1fr) 1ch;
+    grid-template-rows: 10ch repeat(6, 9vh) 10ch;
 
-    .details {
-        grid-area: details;
-        display: grid;
-        grid-template-columns: repeat(19, 1fr);
-        column-gap: 0.5ch;
-        row-gap: 2ch;
-        height: fit-content;
-    }
-
-    .almita {
-        grid-area: bee;
+    [data-one="almita"] {
+        grid-column: 5 / span 6;
+        grid-row: 1 / span 6;
         animation:
             hover 2s ease-in-out infinite,
             almitaAppears 5s ease-in-out forwards;
     }
 
-    .location {
-        grid-column: 5 / span 6;
-        /* margin-top: 4ch; */
-        opacity: 0;
-        animation: fadeIn 2s ease-in-out forwards 13s;
-    }
-
-    .confirmation {
-        grid-column: 9 / span 7;
-        opacity: 0;
-        animation: fadeIn 2s ease-in-out forwards 15s;
-        /* margin-top: -7ch; */
-        position: relative;
-    }
-
     .almita-dialog {
-        grid-area: message;
+        grid-column: 2 / span 6;
+        grid-row: 5 / span 3;
         opacity: 0;
         animation: fadeIn 2s ease-in-out forwards 5s;
     }
@@ -409,7 +387,7 @@ body {
 
         button {
             position: relative;
-            max-width: 25ch;
+            max-width: 22ch;
             min-height: 6ch;
             display: inline-flex;
             flex-direction: column;
@@ -455,37 +433,15 @@ body {
     }
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        /* color: #213547; */
-        background-color: #ffffff;
-    }
-    a:hover {
-        color: #747bff;
-    }
-    button {
-        background-color: #f9f9f9;
-    }
-}
-
 @media screen and (width <= 500px) {
-}
-[data-scene="one"] {
-    grid-template-columns: 1ch 1fr 180px 1ch;
-
-    .location {
-        grid-column: 3 / span 12;
-        column-gap: 1ch;
-        /* margin-top: 2ch; */
-    }
-    .confirmation {
-        grid-column: 5 / span 15;
-        /* margin-top: -1ch; */
-    }
-}
-@media screen and (width <= 450px) {
     [data-scene="one"] {
-        grid-template-columns: 1ch 1fr 140px 1ch;
+        .location {
+            grid-column: 3 / span 12;
+            column-gap: 1ch;
+        }
+        .confirmation {
+            grid-column: 5 / span 15;
+        }
     }
 }
 

@@ -27,6 +27,10 @@ const actions = {
   two: {
     root: '[data-scene="two"]',
     isShowed: false,
+    almita: {
+      root: '[data-two="almita"]',
+      isShowed: false,
+    },
   },
 };
 
@@ -43,6 +47,13 @@ function formatNumber(number) {
   );
 }
 
+window.addEventListener("blur", () => {
+  audio?.pause();
+});
+window.addEventListener("focus", () => {
+  audio?.play();
+});
+
 audio?.addEventListener("timeupdate", () => {
   const current = formatNumber(audio.currentTime / audio.duration);
 
@@ -51,19 +62,19 @@ audio?.addEventListener("timeupdate", () => {
   if (current >= 0.01 && current <= 0.02 && actions.notification.isShowed) {
     $(actions.notification.root)?.classList.add("!hidden");
     actions.notification.isShowed = false;
-  }
 
-  if (current >= 0.021 && current <= 0.5 && !actions.one.almita.isShowed) {
-    $(actions.one.root)?.classList.remove("!hidden");
-    actions.one.almita.isShowed = true;
-
-    if (!actions.background.isShowed) {
-      $(actions.background.root)?.classList.add("start");
-      actions.background.isShowed = true;
+    if (!actions.one.almita.isShowed) {
+      $(actions.one.root)?.classList.remove("!hidden");
+      actions.one.almita.isShowed = true;
     }
   }
 
-  if (current > 0.5 && actions.one.almita.isShowed && !actions.two.isShowed) {
+  if (current >= 0.021 && current <= 0.24 && !actions.background.isShowed) {
+    $(actions.background.root)?.classList.add("start");
+    actions.background.isShowed = true;
+  }
+
+  if (current > 0.24 && actions.one.almita.isShowed && !actions.two.isShowed) {
     $(actions.one.root)?.classList.add("!hidden");
     $(actions.one.almita.root)?.classList.add("!hidden");
     $(actions.two.root)?.classList.remove("!hidden");
