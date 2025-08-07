@@ -1,207 +1,174 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/png" href="/assets/bee-blue.png" />
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/bee-blue.png" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content="Cumpleaños de Alma sofia" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="bee-party-invitation.vercel.app" />
-        <meta
-            property="og:image"
-            content="https://bee-party-invitation.vercel.app/assets/bee-day-open-graph.jpg"
-        />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Cumpleaños de Alma sofia" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="bee-party-invitation.vercel.app" />
+    <meta
+      property="og:image"
+      content="https://bee-party-invitation.vercel.app/assets/bee-day-open-graph.jpg"
+    />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Chewy&family=Mynerve&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            @font-face {
-                font-family: "InkFree";
-                font-weight: 400;
-                src: url("/assets/fonts/ink-free.ttf") format("ttf");
-            }
-        </style>
-        <title>Alma Sofia te invita a su cumpleaños</title>
-    </head>
-    <body>
-        <main id="app">
-            <div class="card shadow-orange-300 shadow-2xl">
-                <div data-scene="background">
-                    <div class="trees"></div>
-                    <div class="flowers"></div>
-                    <div
-                        class="bee scale-60"
-                        data-bee="one"
-                        data-replicate="one"
-                    >
-                        <i></i>
-                    </div>
-                    <div
-                        class="bee scale-50"
-                        data-bee="two"
-                        data-replicate="one"
-                    >
-                        <i></i>
-                    </div>
-                    <div
-                        class="bee scale-[30%]"
-                        data-bee="two"
-                        data-replicate="two"
-                    >
-                        <i></i>
-                    </div>
-                    <div
-                        class="bee scale-[40%]"
-                        data-bee="two"
-                        data-replicate="three"
-                    >
-                        <i></i>
-                    </div>
-                </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chewy&family=Mynerve&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @font-face {
+        font-family: "InkFree";
+        font-weight: 400;
+        src: url("/assets/fonts/ink-free.ttf") format("ttf");
+      }
+    </style>
+    <title>Alma Sofia te invita a su cumpleaños</title>
+  </head>
+  <body>
+    <main id="app">
+      <div class="card shadow-orange-300 shadow-2xl">
+        <div data-scene="background">
+          <div class="trees"></div>
+          <div class="flowers"></div>
+          <div class="bee scale-60" data-bee="one" data-replicate="one">
+            <i></i>
+          </div>
+          <div class="bee scale-50" data-bee="two" data-replicate="one">
+            <i></i>
+          </div>
+          <div class="bee scale-[30%]" data-bee="two" data-replicate="two">
+            <i></i>
+          </div>
+          <div class="bee scale-[40%]" data-bee="two" data-replicate="three">
+            <i></i>
+          </div>
+        </div>
 
-                <div data-scene="one" class="!hidden">
-                    <div class="almita" data-one="almita"></div>
-                    <div class="almita-dialog grid gap-y-5 sm:gap-y-10 h-fit">
-                        <div
-                            class="text-lg sm:text-xl flex flex-col font-mynerve"
-                        >
-                            <span data-message="1" class="text-pink-900">
-                                it's my first
-                            </span>
-                            <span
-                                data-message="2"
-                                class="text-pink-700 text-shadow-pink-800 text-shadow-2xs text-5xl font-mynerve"
-                            >
-                                Bee-day
-                            </span>
-                        </div>
-
-                        <div
-                            class="text-lg text-pink-900 font-mynerve text-balance"
-                        >
-                            <span data-message="3">
-                                Se acerca una fecha muy
-                            </span>
-                            <span data-message="4">
-                                especial para mi y mis papitos.
-                            </span>
-                            <span data-message="5">
-                                Queremos compartir este
-                            </span>
-                            <span data-message="6">
-                                dulce momento contigo.
-                            </span>
-                            <span data-message="7" class="mt-[.5lh]">
-                                Celebremos mi
-                                <strong
-                                    class="text-pink-600 text-shadow-pink-800 text-shadow-2xs font-mynerve"
-                                >
-                                    1<sup>er</sup> bee-day.
-                                </strong>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div data-scene="two" class="!hidden">
-                    <div class="message grid gap-y-5 sm:gap-y-10 h-fit">
-                        <div class="text-xl flex flex-col font-mynerve">
-                            <span data-message="1" class="text-pink-900">
-                                Con amor
-                            </span>
-                            <span
-                                data-message="2"
-                                class="text-pink-700 text-shadow-pink-800 text-shadow-2xs text-4xl font-mynerve"
-                            >
-                                Alma Sofia Santos Soto
-                            </span>
-                        </div>
-                    </div>
-                    <div class="almita" data-two="almita"></div>
-                    <div class="details col-span-full font-mynerve">
-                        <div class="location text-md flex flex-col">
-                            <span class="text-green-800"> Te esperamos </span>
-                            <div class="flex gap-2">
-                                <span
-                                    class="text-2xl justify-self-end text-center"
-                                >
-                                    19 Julio
-                                </span>
-                                <span class="flex flex-col">
-                                    <span class="text-pink-700">
-                                        Comfamiliar
-                                    </span>
-                                    <small class="text-pink-900">
-                                        sede administrativa
-                                    </small>
-                                    <span class="text-pink-700">salón 207</span>
-                                </span>
-                            </div>
-                        </div>
-                        <a
-                            href="https://wa.me/573505099220?text=Hola%20papitos%20de%20Alma%20Sofia%20agradecemos%20su%20invitación..."
-                            target="_blank"
-                            rel="noreferrer"
-                            class="confirmation inline-flex gap-1 w-max text-md text-pink-700 max-h-10 p-2 rounded-3xl relative"
-                        >
-                            <i
-                                class="pointer-none select-none absolute rotate-2 inset-0 border-pink-700 rounded-[inherit] border"
-                            ></i>
-                            <i
-                                class="pointer-none select-none absolute -rotate-2 inset-0 border-pink-400 rounded-[inherit] border"
-                            ></i>
-                            Confirma tu asistencia
-                            <strong class="text-green-800 h-fit"> aquí </strong>
-                        </a>
-                    </div>
-                </div>
-
-                <div data-scene="notification" class="-hidden">
-                    <div data-scene="welcome">
-                        <button
-                            data-welcome="trigger"
-                            class="text-amber-700 text-xl rounded-4xl border-amber-600 border cursor-pointer"
-                        >
-                            <i
-                                class="pointer-none select-none absolute rotate-2 inset-0 border-amber-500 rounded-[inherit] border"
-                            ></i>
-                            <i
-                                class="pointer-none select-none absolute -rotate-2 inset-0 border-amber-400 rounded-[inherit] border"
-                            ></i>
-                            <span class="text-xl font-mynerve">
-                                Tenemos una invitation muy especial para ti.
-                            </span>
-                            <span class="text-xl font-chewy text-amber-600">
-                                haz click aquí
-                            </span>
-                            <span
-                                data-welcome="bee"
-                                class="text-xl pointer-none my-auto absolute top-10 -left-3"
-                            >
-                                <span
-                                    data-welcome="bzz"
-                                    class="absolute top-10 -left-3 w-min whitespace-nowrap font-chewy text-amber-500"
-                                >
-                                    Bzz...bzz
-                                </span>
-                                <figure
-                                    class="bee scale-150"
-                                    data-bee="three"
-                                    data-replicate="one"
-                                >
-                                    <i></i>
-                                </figure>
-                            </span>
-                        </button>
-                    </div>
-                </div>
+        <div data-scene="one" class="!hidden">
+          <div class="almita" data-one="almita"></div>
+          <div class="almita-dialog grid gap-y-5 sm:gap-y-10 h-fit">
+            <div class="text-lg sm:text-xl flex flex-col font-mynerve">
+              <span data-message="1" class="text-pink-900">
+                it's my first
+              </span>
+              <span
+                data-message="2"
+                class="text-pink-700 text-shadow-pink-800 text-shadow-2xs text-5xl font-mynerve"
+              >
+                Bee-day
+              </span>
             </div>
-        </main>
-        <script type="module" src="/src/main.js"></script>
-    </body>
+
+            <div class="text-lg text-pink-900 font-mynerve text-balance">
+              <span data-message="3"> Se acerca una fecha muy </span>
+              <span data-message="4"> especial para mi y mis papitos. </span>
+              <span data-message="5"> Queremos compartir este </span>
+              <span data-message="6"> dulce momento contigo. </span>
+              <span data-message="7" class="mt-[.5lh]">
+                Celebremos mi
+                <strong
+                  class="text-pink-600 text-shadow-pink-800 text-shadow-2xs font-mynerve"
+                >
+                  1<sup>er</sup> bee-day.
+                </strong>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div data-scene="two" class="!hidden">
+          <div class="message grid gap-y-5 sm:gap-y-10 h-fit">
+            <div class="text-xl flex flex-col font-mynerve">
+              <span data-message="1" class="text-pink-900"> Con amor </span>
+              <span
+                data-message="2"
+                class="text-pink-700 text-shadow-pink-800 text-shadow-2xs text-4xl font-mynerve"
+              >
+                Alma Sofia Santos Soto
+              </span>
+            </div>
+          </div>
+          <div class="almita" data-two="almita"></div>
+          <div class="details col-span-full font-mynerve">
+            <div class="location text-md flex flex-col">
+              <span class="text-green-800"> Te esperamos </span>
+              <div class="flex gap-2">
+                <span class="text-2xl justify-self-end text-center">
+                  7 de agosto
+                </span>
+                <span class="flex flex-col">
+                  <span class="text-pink-700">
+                    Parque Glorieta Sueños de Libertad
+                  </span>
+                  <small class="text-pink-900">
+                    Calle 14 # 1N - 79 Cartago
+                  </small>
+                </span>
+              </div>
+            </div>
+            <a
+              href="https://wa.me/573028375949?text=Hola%20papitos%20de%20Alma%20Sofia%20agradecemos%20su%20invitación..."
+              target="_blank"
+              rel="noreferrer"
+              class="confirmation inline-flex gap-1 w-max text-md text-pink-700 max-h-10 p-2 rounded-3xl relative"
+            >
+              <i
+                class="pointer-none select-none absolute rotate-2 inset-0 border-pink-700 rounded-[inherit] border"
+              ></i>
+              <i
+                class="pointer-none select-none absolute -rotate-2 inset-0 border-pink-400 rounded-[inherit] border"
+              ></i>
+              Confirma tu asistencia
+              <strong class="text-green-800 h-fit"> aquí </strong>
+            </a>
+          </div>
+        </div>
+
+        <div data-scene="notification" class="-hidden">
+          <div data-scene="welcome">
+            <button
+              data-welcome="trigger"
+              class="text-amber-700 text-xl rounded-4xl border-amber-600 border cursor-pointer"
+            >
+              <i
+                class="pointer-none select-none absolute rotate-2 inset-0 border-amber-500 rounded-[inherit] border"
+              ></i>
+              <i
+                class="pointer-none select-none absolute -rotate-2 inset-0 border-amber-400 rounded-[inherit] border"
+              ></i>
+              <span class="text-xl font-mynerve">
+                Tenemos una invitation muy especial para ti.
+              </span>
+              <span class="text-xl font-chewy text-amber-600">
+                haz click aquí
+              </span>
+              <span
+                data-welcome="bee"
+                class="text-xl pointer-none my-auto absolute top-10 -left-3"
+              >
+                <span
+                  data-welcome="bzz"
+                  class="absolute top-10 -left-3 w-min whitespace-nowrap font-chewy text-amber-500"
+                >
+                  Bzz...bzz
+                </span>
+                <figure
+                  class="bee scale-150"
+                  data-bee="three"
+                  data-replicate="one"
+                >
+                  <i></i>
+                </figure>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
